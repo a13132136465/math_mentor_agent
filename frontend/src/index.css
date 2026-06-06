@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette */
+  --color-primary:            hsl(262.1 83.3% 57.8%);
+  --color-primary-foreground: hsl(210 20% 98%);
+
+  --color-secondary:            hsl(220 14.3% 95.9%);
+  --color-secondary-foreground: hsl(220.9 39.3% 11%);
+
+  --color-muted:            hsl(220 14.3% 95.9%);
+  --color-muted-foreground: hsl(220 8.9% 46.1%);
+
+  --color-accent:            hsl(220 14.3% 95.9%);
+  --color-accent-foreground: hsl(220.9 39.3% 11%);
+
+  --color-destructive:            hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 20% 98%);
+
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(224 71.4% 4.1%);
+
+  --color-card:            hsl(0 0% 100%);
+  --color-card-foreground: hsl(224 71.4% 4.1%);
+
+  --color-popover:            hsl(0 0% 100%);
+  --color-popover-foreground: hsl(224 71.4% 4.1%);
+
+  --color-border: hsl(220 13% 91%);
+  --color-input:  hsl(220 13% 91%);
+  --color-ring:   hsl(262.1 83.3% 57.8%);
+
+  --radius: 0.75rem;
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: Roboto, ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.5;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Material Design minimum touch target (48×48dp) */
+@layer utilities {
+  .touch-target {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    min-width: 3rem;
+  }
+
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skip-link:focus {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    border-radius: 0.5rem;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    font-weight: 500;
+    text-decoration: none;
+  }
+}
+
+/* MathLive problem editor (New Problem page) */
+math-field.math-problem-field {
+  display: block;
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  --text-font-family: ui-sans-serif, system-ui, sans-serif;
+  --contains-highlight-background-color: rgb(237 233 254);
+  --selection-background-color: rgb(196 181 253);
+}
+
+math-field.math-problem-field:focus-within {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px hsl(262.1 83.3% 57.8%);
+}
+
+/* MathLive mixed text + math editor (New Problem & Tutor Chat) */
+math-field.math-mixed-field {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  --text-font-family: ui-sans-serif, system-ui, sans-serif;
+  --contains-highlight-background-color: rgb(237 233 254);
+  --selection-background-color: rgb(196 181 253);
+}
+
+math-field.math-mixed-field--problem {
+  min-height: 5rem;
+  font-size: 1rem;
+}
+
+math-field.math-mixed-field--chat {
+  min-height: 3rem;
+}
+
+math-field.math-mixed-field:focus-within,
+math-field.math-mixed-field--math-active {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px hsl(262.1 83.3% 57.8%);
+}
+
+math-field.math-mixed-field--math-active {
+  --highlight-text: rgb(237 233 254);
+}
+
+math-field.math-mixed-field[readonly] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* KaTeX inside violet student chat bubbles */
+.bg-violet-600 .student-message-content .katex {
+  color: inherit;
+}
+
+/* Hide KaTeX error styling — we fall back to plain text in LatexRenderer */
+.latex-renderer .katex-error {
+  color: inherit;
+}

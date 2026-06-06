@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: MathMentor API
+  version: 1.0.0
+  description: Socratic Calculus Tutor — Vertex AI · MongoDB · FastAPI
+servers:
+  - url: /v1
+paths:
+  /health:
+    get:
+      summary: Liveness probe
+      responses:
+        "200":
+          description: OK
+  /ready:
+    get:
+      summary: Readiness probe (MongoDB + Vertex AI)
+      responses:
+        "200":
+          description: OK or degraded
+  /auth/google:
+    post:
+      summary: Exchange Google ID token for JWT
+  /auth/dev-login:
+    post:
+      summary: Development bypass login
+  /me:
+    get:
+      summary: Student profile + mastery
+    patch:
+      summary: Update preferences
+  /me/analytics:
+    get:
+      summary: Learning analytics (Analytics Agent)
+  /me/mastery/history:
+    get:
+      summary: Mastery timeline per topic
+  /analyze:
+    post:
+      summary: Standalone problem analysis (plan stripped)
+  /sessions:
+    post:
+      summary: Create tutoring session
+    get:
+      summary: List sessions
+  /sessions/{session_id}:
+    get:
+      summary: Session detail (plan stripped)
+  /sessions/{session_id}/messages:
+    get:
+      summary: Chat history
+    post:
+      summary: Send message — SSE stream
+      responses:
+        "200":
+          description: text/event-stream
+  /sessions/{session_id}/stuck:
+    post:
+      summary: Escalate hint — SSE stream (same format as messages)
+  /sessions/{session_id}/complete:
+    post:
+      summary: End session and generate practice exercises
+  /exercises:
+    get:
+      summary: Pending exercises due now
+  /exercises/due:
+    get:
+      summary: Spaced-repetition queue
+  /exercises/all:
+    get:
+      summary: All exercise sets
+  /exercises/single:
+    post:
+      summary: Generate one on-demand exercise
+  /exercises/{exercise_set_id}/problems/{id}:
+    patch:
+      summary: Mark problem completed or skipped

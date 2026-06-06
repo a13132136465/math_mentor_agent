@@ -1,0 +1,82 @@
+[
+  {
+    "name": "health",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "llm_providers_deepseek_available",
+    "passed": true,
+    "detail": "{'id': 'deepseek', 'label': 'DeepSeek', 'available': True}"
+  },
+  {
+    "name": "preferences_llm_provider",
+    "passed": true,
+    "detail": "deepseek"
+  },
+  {
+    "name": "US01_analysis_on_first_turn",
+    "passed": true,
+    "detail": "events=['analysis_start', 'analysis', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'done', 'agent_trace'] errors=[]"
+  },
+  {
+    "name": "US01_topic_classified",
+    "passed": true,
+    "detail": "topic=derivatives"
+  },
+  {
+    "name": "US01_uses_deepseek_models",
+    "passed": true,
+    "detail": "models=['deepseek-chat', 'deepseek-reasoner'] route=analyzer"
+  },
+  {
+    "name": "US02_teaching_followup_no_reanalyze",
+    "passed": true,
+    "detail": "route=teaching events=['token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'token', 'done', 'agent_trace'] errors=[]"
+  },
+  {
+    "name": "US03_step_verdict_present",
+    "passed": true,
+    "detail": "verdict=correct"
+  },
+  {
+    "name": "US07_stuck_endpoint",
+    "passed": true,
+    "detail": "{\"hint_level\":1}"
+  },
+  {
+    "name": "US07_hint_level_increased",
+    "passed": true,
+    "detail": "hint_level=1"
+  },
+  {
+    "name": "session_phase_not_intake",
+    "passed": true,
+    "detail": "phase=tutoring"
+  },
+  {
+    "name": "no_confirm_leak_turn3",
+    "passed": true,
+    "detail": "You're close, but let's double-check the inner function. In \\(\\sin(3x^2)\\), the input to sine is \\(3x^2\\), not \\(x^2+1\\). So the inner function is \\(3x^2\\).\n\nNow, using the chain rule: the derivative "
+  },
+  {
+    "name": "US06_messages_persisted",
+    "passed": true,
+    "detail": "student=3 assistant=3"
+  },
+  {
+    "name": "US04_analytics",
+    "passed": true,
+    "detail": "{\"strengths\":[\"derivatives\"],\"weaknesses\":[\"limits\"],\"mastery_scores\":{\"limits\":0.3612,\"derivatives\":0.8796,\"integrals\":0.5},\"recommended_next_topic\":"
+  },
+  {
+    "name": "no_obvious_answer_leak_turn1",
+    "passed": true,
+    "detail": "That's a great question—it gets right to the heart of the chain rule. When we have a composition like \\( f(g(x)) \\), the \"outer\" function \\( f \\) acts on the result of the \"inner\" function \\( g \\). Th"
+  },
+  {
+    "name": "limit_scenario_turn1",
+    "passed": true,
+    "detail": "errors=[]"
+  }
+]

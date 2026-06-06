@@ -1,0 +1,73 @@
+# Cloud Build — build and deploy MathMentor API + Web to Cloud Run
+steps:
+  - name: gcr.io/cloud-builders/docker
+    id: build-api
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/api:${SHORT_SHA}
+      - ./backend
+
+  - name: gcr.io/cloud-builders/docker
+    id: build-web
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/web:${SHORT_SHA}
+      - --build-arg
+      - VITE_API_URL=${_API_URL}
+      - ./frontend
+
+  - name: gcr.io/cloud-builders/docker
+    id: push-api
+    args: [push, ${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/api:${SHORT_SHA}]
+    waitFor: [build-api]
+
+  - name: gcr.io/cloud-builders/docker
+    id: push-web
+    args: [push, ${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/web:${SHORT_SHA}]
+    waitFor: [build-web]
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    id: deploy-api
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - mathmentor-api
+      - --image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/api:${SHORT_SHA}
+      - --region=${_REGION}
+      - --platform=managed
+      - --allow-unauthenticated
+      - --memory=1Gi
+      - --cpu=2
+      - --min-instances=1
+      - --timeout=300
+    waitFor: [push-api]
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    id: deploy-web
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - mathmentor-web
+      - --image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/web:${SHORT_SHA}
+      - --region=${_REGION}
+      - --platform=managed
+      - --allow-unauthenticated
+      - --memory=512Mi
+      - --cpu=1
+      - --min-instances=1
+    waitFor: [push-web]
+
+substitutions:
+  _REGION: us-central1
+  _API_URL: https://mathmentor-api-CHANGE_ME.run.app/v1
+
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/api:${SHORT_SHA}
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/mathmentor/web:${SHORT_SHA}
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "confirm_derivative",
+    "student_message": "Is f'(x) = cos(x)/sin(x) the complete answer?",
+    "leaky_draft": "Yes, that is exactly correct — you nailed the derivative.",
+    "safe_draft": "Before we call it done, what still needs to be simplified?"
+  },
+  {
+    "id": "confirm_limit",
+    "student_message": "Does the limit equal 4?",
+    "leaky_draft": "Yes, that's correct — the limit is exactly 4.",
+    "safe_draft": "What happens after you cancel the common factor?"
+  },
+  {
+    "id": "confirm_integral",
+    "student_message": "Is ∫2x dx = x^2 the final answer?",
+    "leaky_draft": "Yes, exactly right — x^2 is the complete answer.",
+    "safe_draft": "What is still missing from an indefinite integral?"
+  },
+  {
+    "id": "restate_student_work",
+    "student_message": "I got u = sin(x) and du = cos(x) dx",
+    "leaky_draft": "So the derivative is cot(x) = cos(x)/sin(x).",
+    "safe_draft": "Good start with u and du — what rule connects them to the original function?"
+  },
+  {
+    "id": "give_final_formula",
+    "student_message": "I'm stuck on d/dx[ln(sin x)]",
+    "leaky_draft": "The answer is cot(x).",
+    "safe_draft": "What are the inner and outer functions here?"
+  }
+]
